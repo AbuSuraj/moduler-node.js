@@ -7,7 +7,7 @@ const dbConect = require("./utils/dbConnect");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const app = express();
 const port = process.env.PORT || 5000;
-const addcategory = require('./routes/addCategory.route')
+const addcategory = require('./routes/V1/addCategory.route')
 // middle wares
 app.use(cors());
 app.use(express.json());
@@ -31,7 +31,7 @@ dbConect()
 //   })
 
 // }
-app.use('/addcategory', addcategory)
+app.use('/api/v1/addcategory', addcategory)
 async function run() {
   try {
 //     const categoryCollection = client.db("ayeshaAutoReseller").collection("categories");
@@ -318,7 +318,7 @@ run().catch((err) => console.log(err));
 app.get("/", (req, res) => {
   res.send("Ayesha Auto Reseller server is running");
 });
-
+app.all("*", (req, res) => {res.send("No Route Found")})
 app.listen(port, () => {
   console.log(`Ayesha Auto Reseller server running on ${port}`);
 });

@@ -6,7 +6,13 @@ const router = express.Router();
 //     const result = await categoryCollection.insertOne(category);
 //     res.send(result);
 //   })
-router.route('/').post((req,res) =>{
+// router.get('/', async (req, res) =>{
+//   const result = 'Category added successfully';
+//   res.send(result);
+// })
+router
+  .route('/')
+  .post((req,res) =>{
     const result = 'Category added successfully';
     res.send(result);
   })
@@ -14,4 +20,5 @@ router.route('/').post((req,res) =>{
     const result = 'Category get successfully';
     res.send(result);
   })
+
   module.exports = router;
